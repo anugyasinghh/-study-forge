@@ -1,6 +1,9 @@
-const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:5000/api'
-  : '/api';
+const API_BASE =
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000/api'
+    : 'https://study-forge-backend-r9tj.onrender.com'; 
+    
 
 const state = {
   token: localStorage.getItem('studyForgeToken'),
