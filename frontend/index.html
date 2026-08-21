@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>Study Forge — Your Personal Study Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <section id="authView" class="auth-view">
+    <div class="auth-brand">
+      <div class="brand-mark">SF</div>
+      <div>
+        <div class="brand-name">Study Forge</div>
+        <div class="brand-tag">forge better study sessions.</div>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-copy">
+        <span class="eyebrow">YOUR DIGITAL STUDY ROOM</span>
+        <h1>Build focus.<br><span>Ship progress.</span></h1>
+        <p>Keep your subjects, timers, ideas and daily study flow in one calm workspace.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-auth-tab="login" type="button">Log in</button>
+        <button class="auth-tab" data-auth-tab="register" type="button">Create account</button>
+      </div>
+
+      <form id="loginForm" class="auth-form active">
+        <label>Email<input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required></label>
+        <label>Password<input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required></label>
+        <button class="primary-btn wide" type="submit">Enter Study Forge <span>→</span></button>
+      </form>
+
+      <form id="registerForm" class="auth-form">
+        <label>Name<input type="text" id="registerName" placeholder="Your name" autocomplete="name" required maxlength="40"></label>
+        <label>Email<input type="email" id="registerEmail" placeholder="you@example.com" autocomplete="email" required></label>
+        <label>Password<input type="password" id="registerPassword" placeholder="At least 6 characters" autocomplete="new-password" minlength="6" required></label>
+        <button class="primary-btn wide" type="submit">Forge my workspace <span>→</span></button>
+      </form>
+
+      <div class="auth-note">No complicated setup inside the app. Your study data belongs to your account.</div>
+    </div>
+  </section>
+
+  <section id="appView" class="app-view hidden">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark small">SF</div>
+        <div>
+          <div class="brand-name">Study Forge</div>
+          <div class="brand-tag">focus mode</div>
+        </div>
+      </div>
+
+      <nav class="top-actions">
+        <div class="user-pill"><span class="status-dot"></span><span id="userName">Student</span></div>
+        <button id="logoutBtn" class="ghost-btn" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="dashboard">
+      <section class="hero-row">
+        <div>
+          <span class="eyebrow">STUDY ROOM</span>
+          <h2 id="greeting">Ready to study?</h2>
+          <p class="muted">Pick a task, start a timer, and keep your thoughts somewhere useful.</p>
+        </div>
+        <div class="date-card"><span id="todayLabel">Today</span><strong id="clock">--:--</strong></div>
+      </section>
+
+      <section class="stats-grid">
+        <div class="stat-card"><span>Focus tools</span><strong>∞</strong><small>all in one room</small></div>
+        <div class="stat-card"><span>Your notes</span><strong id="noteCount">0</strong><small>saved to your account</small></div>
+        <div class="stat-card"><span>Your timers</span><strong id="timerCount">0</strong><small>ready when you are</small></div>
+        <div class="stat-card accent"><span>Current mode</span><strong>FOCUS</strong><small>notifications off mentally</small></div>
+      </section>
+
+      <section class="workspace-grid">
+        <article class="panel notes-panel">
+          <div class="panel-head">
+            <div><span class="eyebrow">01</span><h3>Sticky notes</h3></div>
+            <button id="addNoteBtn" class="icon-btn" type="button" title="Add note">+</button>
+          </div>
+          <form id="noteForm" class="inline-form hidden">
+            <input id="noteTitle" placeholder="Note title" maxlength="80" required>
+            <textarea id="noteContent" rows="3" placeholder="Write something useful…" maxlength="1000"></textarea>
+            <div class="form-row"><select id="noteColor"><option value="#f4f1ea">Paper</option><option value="#e6e6e6">Stone</option><option value="#fff1b8">Warm</option><option value="#e2efff">Blue</option></select><button class="primary-btn" type="submit">Save note</button></div>
+          </form>
+          <div id="notesList" class="notes-list"></div>
+          <div id="emptyNotes" class="empty-state">No notes yet. Add your first sticky.</div>
+        </article>
+
+        <article class="panel timers-panel">
+          <div class="panel-head">
+            <div><span class="eyebrow">02</span><h3>Study timers</h3></div>
+            <button id="addTimerBtn" class="icon-btn" type="button" title="Add timer">+</button>
+          </div>
+          <form id="timerForm" class="inline-form hidden">
+            <div class="two-inputs"><input id="timerSubject" placeholder="Subject" maxlength="40" required><input id="timerMinutes" type="number" min="1" max="600" value="25" required></div>
+            <button class="primary-btn" type="submit">Add timer</button>
+          </form>
+          <div id="timersList" class="timers-list"></div>
+          <div id="emptyTimers" class="empty-state">No timers yet. Add Physics, DSA, Maths — whatever you need.</div>
+        </article>
+
+        <article class="panel whiteboard-panel">
+          <div class="panel-head">
+            <div><span class="eyebrow">03</span><h3>Whiteboard</h3></div>
+            <div class="panel-actions"><button id="clearBoardBtn" class="ghost-btn" type="button">Clear</button></div>
+          </div>
+          <div class="board-wrap"><canvas id="whiteboard" aria-label="Study whiteboard"></canvas></div>
+          <div class="board-tip">Draw formulas, diagrams, rough work or a suspiciously beautiful brain dump.</div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">Study Forge · built for students who want to make progress, not just plans.</footer>
+  </section>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
